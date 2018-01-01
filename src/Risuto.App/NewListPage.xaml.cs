@@ -26,7 +26,7 @@ namespace Risuto.App
         public NewListPage()
         {
             this.InitializeComponent();
-            this.ViewModel = new NewListViewModel();
+            this.ViewModel = new NewListViewModel((App.Current as App).Storage);
         }
 
         public NewListViewModel ViewModel { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Risuto.App.Commands;
+using Risuto.Data;
 using Risuto.Models;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,16 @@ namespace Risuto.App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private ShoppingList list;
+        private readonly IStorage storage;
 
-        public NewListViewModel()
+        public NewListViewModel(IStorage storage)
         {
+            this.storage = storage;
             this.list = new ShoppingList("fake name");
             this.SaveList = new AsyncCommand(
                 async () =>
                 {
-                    await Task.Factory.StartNew(() => this.list.Name = "Saved");
+                    await this.storage.InsertAsync(this.list);
                     this.NotifyPropertyChanged("Typed");
                 });
         }

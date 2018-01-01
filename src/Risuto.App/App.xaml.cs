@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Risuto.Data;
+using Risuto.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,16 +32,21 @@ namespace Risuto.App
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Storage = new SqliteStorage();
         }
+
+        public IStorage Storage { get; private set; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+
+            await this.Storage.CreateDatabaseAsync();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

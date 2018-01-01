@@ -26,7 +26,7 @@ namespace Risuto.App
         public MainPage()
         {
             this.InitializeComponent();
-            this.ViewModel = new MainPageViewModel();
+            this.ViewModel = new MainPageViewModel((App.Current as App).Storage);
         }
 
         public MainPageViewModel ViewModel { get; set; }
@@ -34,6 +34,12 @@ namespace Risuto.App
         private void NewList_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(NewListPage));
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await this.ViewModel.LoadSavedListsAsync();
         }
     }
 }

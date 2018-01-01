@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{430D596E-D785-4976-98A6-C77614FAB254}</ProjectGuid>
+    <ProjectGuid>{12B7CD75-C07A-4E65-B319-C571D662C8D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Risuto</RootNamespace>
-    <AssemblyName>Risuto</AssemblyName>
+    <RootNamespace>Risuto.Data.Sqlite</RootNamespace>
+    <AssemblyName>Risuto.Data.Sqlite</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.14393.0</TargetPlatformVersion>
@@ -106,17 +106,24 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Data\IStorage.cs" />
-    <Compile Include="Models\ShoppingList.cs" />
+    <Compile Include="SqliteStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Risuto.Interfaces.rd.xml" />
+    <EmbeddedResource Include="Properties\Risuto.Data.Sqlite.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.4</Version>
     </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.5.166-beta</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Risuto.Interfaces\Risuto.Interfaces.csproj">
+      <Project>{430d596e-d785-4976-98a6-c77614fab254}</Project>
+      <Name>Risuto.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

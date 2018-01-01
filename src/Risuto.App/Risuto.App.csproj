@@ -144,6 +144,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Risuto.Data.Sqlite\Risuto.Data.Sqlite.csproj">
+      <Project>{12b7cd75-c07a-4e65-b319-c571d662c8d6}</Project>
+      <Name>Risuto.Data.Sqlite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Risuto.Interfaces\Risuto.Interfaces.csproj">
       <Project>{430d596e-d785-4976-98a6-c77614fab254}</Project>
       <Name>Risuto.Interfaces</Name>

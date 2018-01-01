@@ -1,4 +1,5 @@
-﻿using Risuto.Models;
+﻿using Risuto.Data;
+using Risuto.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,15 +11,23 @@ namespace Risuto.App.ViewModels
 {
     public class MainPageViewModel
     {
-        public MainPageViewModel()
+        private readonly IStorage storage;
+
+        public MainPageViewModel(IStorage storage)
         {
+            this.storage = storage;
             this.Lists = new ObservableCollection<ShoppingList>();
-            for (int i = 0; i < 30; i++)
-            {
-                this.Lists.Add(new ShoppingList($"List {i+1}"));
-            }
         }
 
-        public ObservableCollection<ShoppingList> Lists { get; set; }
+        public ObservableCollection<ShoppingList> Lists { get; private set; }
+
+        public async Task LoadSavedListsAsync()
+        {
+            var savedLists = await this.storage.LoadSavedListsAsync();
+            foreach(var list in savedLists)
+            {
+                this.Lists.Add(list);
+            }
+        }
     }
 }
