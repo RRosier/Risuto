@@ -13,12 +13,18 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="0" Text="Name: " />
         <TextBox Grid.Column="1" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" TextWrapping="Wrap" />
         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{x:Bind ViewModel.Typed, Mode=OneWay}" />
+
+        <Button Grid.Row="2" Content="Save" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch"
+                Command="{x:Bind ViewModel.SaveList}"/>
     </Grid>
 </Page>

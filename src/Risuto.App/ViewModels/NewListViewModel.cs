@@ -1,4 +1,5 @@
-﻿using Risuto.Models;
+﻿using Risuto.App.Commands;
+using Risuto.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Risuto.App.ViewModels
 {
@@ -17,6 +19,12 @@ namespace Risuto.App.ViewModels
         public NewListViewModel()
         {
             this.list = new ShoppingList("fake name");
+            this.SaveList = new AsyncCommand(
+                async () =>
+                {
+                    await Task.Factory.StartNew(() => this.list.Name = "Saved");
+                    this.NotifyPropertyChanged("Typed");
+                });
         }
 
         public string Name
@@ -27,6 +35,8 @@ namespace Risuto.App.ViewModels
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged("Typed"); }
         }
+
+        public ICommand SaveList { get; private set; }
 
         public string Typed { get { return this.list.Name; } }
 
