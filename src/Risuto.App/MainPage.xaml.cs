@@ -30,16 +30,21 @@ namespace Risuto.App
         }
 
         public MainPageViewModel ViewModel { get; set; }
+        
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await this.ViewModel.LoadSavedListsAsync();
+        }
 
         private void NewList_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(NewListPage));
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private void Items_Click(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            await this.ViewModel.LoadSavedListsAsync();
+            this.Frame.Navigate(typeof(ItemsPage));
         }
     }
 }

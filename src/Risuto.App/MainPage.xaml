@@ -25,7 +25,8 @@
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Content="Create List" 
                     Click="NewList_Click" />
             <Button Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Items" />
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Items"
+                    Click="Items_Click"/>
 
         </Grid>
         

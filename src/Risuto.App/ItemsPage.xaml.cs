@@ -21,14 +21,20 @@ namespace Risuto.App
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class NewListPage : Page
+    public sealed partial class ItemsPage : Page
     {
-        public NewListPage()
+        public ItemsPage()
         {
             this.InitializeComponent();
-            this.ViewModel = new NewListViewModel((App.Current as App).Storage);
+            this.ViewModel = new ItemsViewModel((App.Current as App).Storage);
         }
 
-        public NewListViewModel ViewModel { get; private set; }
+        public ItemsViewModel ViewModel { get; private set; }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await this.ViewModel.LoadSavedItemsAsync();
+        }
     }
 }

@@ -11,6 +11,6 @@ namespace Risuto.Data
     {
         Task CreateDatabaseAsync();
         Task<int> InsertAsync<T>(T entity);
-        Task<List<ShoppingList>> LoadSavedListsAsync();
+        Task<List<T>> QueryAllAsync<T>() where T : new();
     }
 }

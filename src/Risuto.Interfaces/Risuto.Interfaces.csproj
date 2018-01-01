@@ -107,6 +107,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\IStorage.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ShoppingList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Risuto.Interfaces.rd.xml" />

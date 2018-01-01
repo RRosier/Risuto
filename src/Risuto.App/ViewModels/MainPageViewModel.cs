@@ -23,7 +23,7 @@ namespace Risuto.App.ViewModels
 
         public async Task LoadSavedListsAsync()
         {
-            var savedLists = await this.storage.LoadSavedListsAsync();
+            var savedLists = await this.storage.QueryAllAsync<ShoppingList>();
             foreach(var list in savedLists)
             {
                 this.Lists.Add(list);

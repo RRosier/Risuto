@@ -11,25 +11,26 @@ namespace Risuto.Data.Sqlite
 {
     public class SqliteStorage : IStorage
     {
+        private const string DatabaseName = "risuto";
+
         public async Task CreateDatabaseAsync()
         {
-            var conn = new SQLiteAsyncConnection("risuto");
-            await conn.CreateTableAsync<ShoppingList>().ContinueWith((results) =>
-            {
-                Debug.WriteLine("Table created!");
-            });
+            var conn = new SQLiteAsyncConnection(DatabaseName);
+            await conn.CreateTableAsync<ShoppingList>();
+            await conn.CreateTableAsync<Item>();
         }
 
         public async Task<int> InsertAsync<T>(T entity)
         {
-            var conn = new SQLiteAsyncConnection("risuto");
+            var conn = new SQLiteAsyncConnection(DatabaseName);
             return await conn.InsertAsync(entity);
         }
 
-        public Task<List<ShoppingList>> LoadSavedListsAsync()
+        public Task<List<T>> QueryAllAsync<T>()
+            where T : new()
         {
-            var conn = new SQLiteAsyncConnection("risuto");
-            var query = conn.Table<ShoppingList>();
+            var conn = new SQLiteAsyncConnection(DatabaseName);
+            var query = conn.Table<T>();
             return query.ToListAsync();
         }
     }
